@@ -7,22 +7,21 @@ class Graph:
             raise RuntimeError(f"Vertex {vertex} already exists in graph.")
         self.data[vertex] = []
     
-    def add_edge(self, v1, v2, e):
+    def add_edge(self, v1, v2, weight):
         if v1 not in self.data:
             raise RuntimeError(f"vertext {v1} does not exists in graph.")
         elif v2 not in self.data:
             raise RuntimeError(f"vertext {v2} does not exists in graph.")
         
-        self.data[v1].append((v2, e))
+        self.data[v1].append((v2, weight))
     
     def get_adjancey_matrix(self):
         totalVertices = len(self.data)
-        print(totalVertices)
         rows = [0 for count in range(totalVertices)]
         matrix = [rows.copy() for count in range(totalVertices)]
         for vertex, edge in self.data.items():  
-            for col, value in edge:
-                matrix[vertex-1][col-1] = value
+            for col, weight in edge:
+                matrix[vertex-1][col-1] = weight
         print(matrix)
         return matrix
     
